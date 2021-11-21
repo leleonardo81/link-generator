@@ -12,10 +12,10 @@ const RedirectPage = ({match}) => {
         if (res.data) {
           // alert(res.data.url)
           const { url }= res.data;
-          window.location.href = `${url.match(/http:\/\/|https:\/\//)?'':'http://'}${url}`;
+          window.location.replace(`${url.match(/http:\/\/|https:\/\//)?'':'http://'}${url}`);
         } else {
           alert("link not found");
-          window.location.href = window.location.origin;
+          window.location.replace(window.location.origin);
         }
       })
     }
