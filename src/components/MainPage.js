@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { createLink, getLink } from "../api";
+import copy from "copy-to-clipboard";
 import '../App.css';
 
 const MainPage = () => {
@@ -16,9 +17,9 @@ const MainPage = () => {
       } else {
         createLink(name, link).then(
           res=> {
-            alert(`Link created: ${window.location.host}/${name}`)
-            // alert("Link created and copied!")
-            // navigator.clipboard.writeText(res.url);
+            const shortenUrl = `${window.location.host}/${name}`
+            copy(shortenUrl);
+            alert(`Link created: ${shortenUrl} and Copied!`);
             setloading(false);
           }
         );
@@ -50,7 +51,7 @@ const MainPage = () => {
           />
       </div>
       <div className="mb-4">
-        <button class="btn btn-light font-bold" onClick={submitLink}
+        <button className="btn btn-light font-bold" onClick={submitLink}
           disabled={!link || !name || loading}
         >Shorten Link</button>
       </div>
